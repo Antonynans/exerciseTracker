@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from "axios";
 
-export default function NewUser() {
+export default function NewUser(props) {
     const [fields, setFields] = useState({
         username: '',
     });
@@ -17,10 +18,20 @@ export default function NewUser() {
         const user = {
             username: fields.username,
         }
-        console.log(user)
-        setFields({
-            username: ''
+        console.log(user);
+
+        axios.post('http://localhost:5000/users/add', user)
+        .then(res => {console.log(res.data)
+            setFields({
+                username: ''
+            })
         })
+        
+        .catch (error => {
+            console.log(error);
+        });
+        
+        
     }
     return (
         <div>

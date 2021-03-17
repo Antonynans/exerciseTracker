@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
     return (
-        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+        <nav className="navbar navbar-dark bg-dark navbar-expand-md">
             <Link to='/' className="navbar-brand">ExerciseTracker</Link>
-            <div className="collapse navbar-collapse">
-                <ul className="navbar-nav ml-auto">
+            <div className="navbar-collapse">
+                <ul className="navbar-nav ml-md-auto">
                     <li className="navbar-item">
                         <Link to ="/" className="nav-link">Exercises</Link>
                     </li>
