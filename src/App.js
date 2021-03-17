@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import {BrowserRouter, Route} from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
-      hey you
-    </div>
+    <BrowserRouter>
+    <Route path="/" component={ExercisesList}
+    </BrowserRouter>
   )
 }
