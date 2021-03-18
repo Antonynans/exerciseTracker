@@ -34,7 +34,8 @@ export default function EditExercise(props) {
             date: fields.date
         }
         console.log(exercise)
-        axios.post('http://localhost:5000/exercises/update'+props.match.params.id, exercise)
+
+        axios.post('http://localhost:5000/exercises/update/'+ props.match.params.id, exercise)
         .then(res => {console.log(res.data)
             window.location='/';
         })
@@ -45,7 +46,7 @@ export default function EditExercise(props) {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/exercises'+props.match.params.id)
+        axios.get('http://localhost:5000/exercises/'+ props.match.params.id)
         .then(res => {
             if (res.data.length > 0) {
                 setFields({
@@ -60,13 +61,18 @@ export default function EditExercise(props) {
             console.log(error);
         });
 
-        axios.get('http://localhost:5000/users')
+        axios.get('http://localhost:5000/users/')
         .then(res => {
             if (res.data.length > 0){
-
+                setFields({
+                    users: res.data.map(user => user.username),                    
+                })
             }
         })
-    },[])
+        .catch (error => {
+            console.log(error);
+        });
+    },[props.match.params.id])
     
     return (
         <div>

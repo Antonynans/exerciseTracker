@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
 
-export default function CreateExercise(props) {
+export default function CreateExercise() {
     const [fields, setFields] = useState({
         username: '',
         description: '',

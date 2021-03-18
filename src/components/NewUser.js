@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
-export default function NewUser(props) {
+export default function NewUser() {
     const [fields, setFields] = useState({
         username: '',
     });

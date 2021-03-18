@@ -7,9 +7,9 @@ const Exercise = props => (
         <td>{props.exercise.username}</td>
         <td>{props.exercise.description}</td>
         <td>{props.exercise.duration}</td>
-        <td>{props.exercise.date.substring(0,10)}</td>
+        <td>{props.exercise.date}</td>
         <td>
-            <Link to={'/edit/'+props.exercise._id}>edit</Link> | <a href='#' onClick={() => {props.deleteExercise(props.exercise._id)}}>delete</a>
+            <Link to={'/edit/'+props.exercise._id}>edit</Link> | <button onClick={() => {props.deleteExercise(props.exercise._id)}}>delete</button>
         </td>
     </tr>
 
@@ -20,14 +20,7 @@ export default function ExerciseList() {
         exercises: []
     });
 
-    // const handleChange = e => {
-    //     setFields({
-    //         ...fields,
-    //         [e.target.id]: e.target.value
-    //     })
-    // };
-
-   
+      
 
     useEffect(() => {
         axios.get('http://localhost:5000/exercises')
@@ -39,15 +32,15 @@ export default function ExerciseList() {
           });
     }, []);
 
-    const deleteExercise = useEffect((id) => {
-        axios.delete('http://localhost:5000/exercises/'+id)
-        .then(res => console.log(res.data));
+    const deleteExercise = (id) => {
+        axios.delete('http://localhost:5000/exercises/'+ id)
+        .then(res => {console.log(res.data)});
         setFields({
             exercises: fields.exercises.filter(el => el._id !== id)
         })
-    },[] );
+    };
 
-    function exerciseList() {
+    const exerciseList = () => {
         return fields.exercises.map(currentexercise => {
             return <Exercise exercise={currentexercise} deleteExercise={deleteExercise} key={currentexercise._id}/>;
         })
@@ -67,7 +60,7 @@ export default function ExerciseList() {
                     </tr>
                 </thead>
                 <tbody>
-                {exerciseList() }
+                {exerciseList()}
                 </tbody>
             </table>
         </div>
