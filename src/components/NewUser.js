@@ -5,6 +5,7 @@ export default function NewUser() {
     const [fields, setFields] = useState({
         username: '',
     });
+    const [message, setMessage] = useState(false);
 
     const handleChange = e => {
         setFields({
@@ -13,25 +14,26 @@ export default function NewUser() {
         });
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const user = {
             username: fields.username,
         }
         console.log(user);
 
-        axios.post('http://localhost:5000/users/add', user)
+        await axios.post('http://localhost:5000/users/add', user)
         .then(res => {console.log(res.data)
             setFields({
                 username: ''
             })
         })
-        
+       
         .catch (error => {
             console.log(error);
+            setMessage(true)
         });
-        
-        
+
+
     }
     return (
         <div>
@@ -48,6 +50,7 @@ export default function NewUser() {
                 <div className="form-group">
                     <input type="submit" value="Create User" className="btn btn-primary" />
                 </div>
+                {message ? (<p>user already exists</p>) : null }
           </form>
         </div>
     )
