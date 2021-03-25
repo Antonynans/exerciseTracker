@@ -20,11 +20,11 @@
     "web-vitals": "^0.2.4"
   },
   "engines": {
-    "node": "v10.19.0"
+    "node": "v14.4.0"
   }
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node server/index.js",
+    "build": "cd exerciseTracker && npm install && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
